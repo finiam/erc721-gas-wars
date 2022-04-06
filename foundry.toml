@@ -1,7 +1,7 @@
 # The Default Profile
 [default]
 # This overrides the `auto_detect_solc` value
-solc_version = '0.8.13'
+solc_version = '0.8.10'
 auto_detect_solc = false
 # Increase optimizer_runs
 optimizer = true
@@ -19,7 +19,9 @@ remappings = [
   "@playpen=lib/playpen/",
   "@token-migrator=lib/token-migrator/",
   "@lil-web3=lib/lil-web3/",
-  "@forge-std=lib/forge-std/"
+  "@forge-std=lib/forge-std/",
+  "@manifoldxyz/creator-core-solidity=lib/creator-core-solidity/",
+  "@manifoldxyz/libraries-solidity=node_modules/@manifoldxyz/libraries-solidity"
 ]
 
 # Extreme Fuzzing CI Profile

@@ -22,7 +22,12 @@
             foundry-bin
 
             # ... any other dependencies we need
-
+            (python3.withPackages(ps: with ps; [
+               ipython
+               jupyter
+               numpy
+               pandas
+            ]))
             yarn
             nodejs-16_x
           ];

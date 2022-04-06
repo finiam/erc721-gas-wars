@@ -1,19 +1,30 @@
 
-# Contracts template • [![tests](https://github.com/finiam/contracts-template/actions/workflows/tests.yml/badge.svg)](https://github.com/finiam/contracts-template/actions/workflows/tests.yml) [![lints](https://github.com/finiam/contracts-template/actions/workflows/lints.yml/badge.svg)](https://github.com/finiam/contracts-template/actions/workflows/lints.yml) ![GitHub](https://img.shields.io/github/license/finiam/contracts-template)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/finiam/contracts-template)
+# ERC721 Gas wars • [![tests](https://github.com/finiam/contracts-template/actions/workflows/tests.yml/badge.svg)](https://github.com/finiam/contracts-template/actions/workflows/tests.yml) [![lints](https://github.com/finiam/contracts-template/actions/workflows/lints.yml/badge.svg)](https://github.com/finiam/contracts-template/actions/workflows/lints.yml)
 
+Testing out optimized 721 implementations and their gas costs !
 
-Foundry contracts templates
+Inspired by this awesome [repository](https://github.com/nftchef/erc721-gas-compare)
+
+Currently we have:
+
+1. OpenZeppelin standard
+2. ERC721B (Blimpie. by Squeebo aka erc721 slim)
+3. ERC721Sequencial by papaver (Genetic chain implementation)
+4. Nuclear Nerds ERC721 (Mason/Chance)
+5. Azuki ERC721A
+6. ERC1155D (erc721-like implementation)
+7. Solmate
+8. TinyERC721 (AiPersonalityERC721)
 
 ## Getting Started
 
-Click `use this template` on [Github](https://github.com/finiam/contracts-template) to create a new repository with this repo as the initial state.
-
-Or, if your repo already exists, run:
 ```sh
-forge init --template https://github.com/finiam/contracts-template
-git submodule update --init --recursive
-forge install
+
+git clone git@github.com:finiam/erc721-gas-wars.git
+&& cd erc721-gas-wars.git
+&& git submodule update --init --recursive
 ```
+
 ## Install
 
 You have **2** options , `Nix` or system dependencies with `asdf`.
@@ -38,18 +49,60 @@ You need `node 16` and `yarn`
 
 You can use [asdf](https://github.com/asdf-vm/asdf) and run `asdf install`
 
-**Deployment & Verification**
 
-Inside the [`bin/`](./bin/) directory there are a few scripts that can be used to deploy and verify contracts.These are simple wrappers for `forge`.
+## Gas report
 
-**Interacting with contracts**
+AzukiTest:testMintMany() (gas: 50742021)
 
-Inside the [`bin/`](./bin/) directory there are a few scripts that can be used to send transactions and read contract state. These are simple wrappers for `cast`.
+AzukiTest:testSafeMintToERC721Recipient() (gas: 361250)
 
-### Writing Tests with Foundry
+AzukiTest:testTransferFrom() (gas: 505992)
 
-To learn about testing in Foundry see [solmate](https://github.com/Rari-Capital/solmate/tree/main/src/test)
+BlimpieTest:testMintMany() (gas: 286403908)
 
-### Configure Foundry
+BlimpieTest:testSafeMintToERC721Recipient() (gas: 338210)
 
-See the Foundry [configuration documentation](https://github.com/gakonst/foundry/blob/master/config/README.md#all-options).
+BlimpieTest:testTransferFrom() (gas: 459380)
+
+ElevenFiftyFiveDTest:testMintMany() (gas: 296936107)
+
+ElevenFiftyFiveDTest:testSafeMintToERC721Recipient() (gas: 531217)
+
+ElevenFiftyFiveDTest:testTransferFrom() (gas: 551653)
+
+GeneticChainTest:testMintMany() (gas: 281102498)
+
+GeneticChainTest:testSafeMintToERC721Recipient() (gas: 338486)
+
+GeneticChainTest:testTransferFrom() (gas: 462112)
+
+ManifoldTest:testMintMany() (gas: 521578683)
+
+ManifoldTest:testSafeMintToERC721Recipient() (gas: 409407)
+
+ManifoldTest:testTransferFrom() (gas: 514427)
+
+MasonChanceTest:testMintMany() (gas: 277997374)
+
+MasonChanceTest:testSafeMintToERC721Recipient() (gas: 337139)
+
+MasonChanceTest:testTransferFrom() (gas: 457545)
+
+OZTest:testMintMany() (gas: 284013814)
+
+OZTest:testSafeMintToERC721Recipient() (gas: 337855)
+
+OZTest:testTransferFrom() (gas: 462164)
+
+SolmateTest:testMintMany() (gas: 277997374)
+
+SolmateTest:testSafeMintToERC721Recipient() (gas: 337139)
+
+SolmateTest:testTransferFrom() (gas: 457545)
+
+TinyTest:testMintMany() (gas: 351492825)
+
+TinyTest:testSafeMintToERC721Recipient() (gas: 367049)
+
+TinyTest:testTransferFrom() (gas: 494610)
+
