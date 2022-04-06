@@ -25,3 +25,6 @@
 [submodule "lib/token-migrator"]
 	path = lib/token-migrator
 	url = https://github.com/ZeframLou/token-migrator
+[submodule "lib/creator-core-solidity"]
+	path = lib/creator-core-solidity
+	url = https://github.com/manifoldxyz/creator-core-solidity
