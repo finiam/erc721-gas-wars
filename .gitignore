@@ -12,3 +12,4 @@ node_modules/
 flattened.txt
 
 .direnv/
+.ipynb_checkpoints/
