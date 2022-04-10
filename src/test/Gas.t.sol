@@ -21,6 +21,7 @@ import { MasonChance } from "../MasonChance.sol";
 import { OZ } from "../OZ.sol";
 import { Tiny } from "../Tiny.sol";
 import { Manifold } from "../Manifold.sol";
+import { K } from "../K.sol";
 
 // The safeMint int is for quantity not tokenId
 contract AzukiTest is DSTestPlus {
@@ -482,5 +483,56 @@ contract ElevenFiftyFiveDTest is DSTestPlus {
     token.safeTransferFrom(address(from), address(0xBEEF), 0, 1, "");
 
     assertEq(token.balanceOf(address(0xBEEF), 0), 1);
+  }
+}
+
+contract ERC721KTest is DSTestPlus {
+  K token;
+
+  function setUp() public {
+    token = new K();
+  }
+
+  function testSafeMintToERC721Recipient() public {
+    ERC721Recipient to = new ERC721Recipient();
+
+    token.safeMint(address(to), 1);
+
+    assertEq(token.ownerOf(1), address(to));
+    assertEq(token.balanceOf(address(to)), 1);
+
+    assertEq(to.operator(), address(this));
+    assertEq(to.from(), address(0));
+    assertEq(to.id(), 1);
+    assertBytesEq(to.data(), "");
+  }
+
+  function testMintMany() public {
+    ERC721Recipient to = new ERC721Recipient();
+
+    token.mintMany(address(to), 10000);
+
+    assertEq(token.ownerOf(1), address(to));
+    assertEq(token.balanceOf(address(to)), 10000);
+
+    assertEq(to.operator(), address(this));
+    assertEq(to.from(), address(0));
+    assertEq(to.id(), 10000);
+    assertBytesEq(to.data(), "");
+  }
+
+  function testTransferFrom() public {
+    address contractAddress = address(token);
+    ERC721User from = new ERC721User(contractAddress);
+
+    token.safeMint(address(from), 1);
+
+    from.approve(address(this), 1);
+
+    token.transferFrom(address(from), address(0xBEEF), 1);
+
+    assertEq(token.ownerOf(1), address(0xBEEF));
+    assertEq(token.balanceOf(address(0xBEEF)), 1);
+    assertEq(token.balanceOf(address(from)), 0);
   }
 }
