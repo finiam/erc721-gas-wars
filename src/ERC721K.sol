@@ -14,6 +14,7 @@ error ERC721__TransferToNonERC721ReceiverImplementer(address receiver);
 error ERC721__TransferToZeroAddress();
 
 /**
+ * https://github.com/exo-digital-labs/ERC721R
  * @notice Maximally optimized, minimalist ERC-721 implementation.
  *
  * @dev Assumes serials are sequentially minted starting at 1 (e.g. 1, 2, 3..),
